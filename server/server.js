@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const videoRoutes = require("./routes/videoRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.get("/video/:id", (req, res) =>
 
 // API routes
 app.use("/videos", videoRoutes);
+app.use("/users", userRoutes);
 
 app.listen(3000, () => console.log("Server running at http://localhost:3000"));
