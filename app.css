@@ -104,6 +104,7 @@ header {
 
 .group-2 input {
   width: 80%;
+  max-width: 80%;
   border: solid 1px #333;
   padding: 10px;
   border-radius: 1rem;

@@ -49,7 +49,23 @@
             </svg>
           </div>
         </button>
-        <button class="nav-btn voice-search">🎙️</button>
+        <button class="nav-btn voice-search">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            fill="currentColor"
+          >
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"
+            />
+            <path
+              d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"
+            />
+          </svg>
+        </button>
       </div>
       <div class="nav-group group-3">
         <button class="nav-btn notifications">
@@ -206,7 +222,7 @@
     </div>
 
     <script>
-      // Implementing tab switching functionality (default tab is home tab)
+      // --- YOUR ORIGINAL TAB SWITCHING LOGIC (UNTOUCHED) ---
       const homeTab = document.getElementById("home-tab");
       const shortsTab = document.getElementById("shorts-tab");
       const subscriptionsTab = document.getElementById("subscriptions-tab");
@@ -229,73 +245,132 @@
       homeBtn.addEventListener("click", () => {
         hideAllTabs();
         homeTab.style.display = "block";
+        fetchTabContent("home", "#home-tab .video-grid", false);
       });
 
       shortsBtn.addEventListener("click", () => {
         hideAllTabs();
         shortsTab.style.display = "block";
+        fetchTabContent("shorts", ".shorts-scroll", true);
       });
 
       subscriptionsBtn.addEventListener("click", () => {
         hideAllTabs();
         subscriptionsTab.style.display = "block";
+        fetchTabContent(
+          "subscriptions",
+          "#subscriptions-tab .video-grid",
+          false,
+        );
       });
 
       youBtn.addEventListener("click", () => {
         hideAllTabs();
         youTab.style.display = "block";
+        fetchTabContent("library", "#you-tab .video-grid", false);
       });
 
       // Set default tab to home
       hideAllTabs();
       homeTab.style.display = "block";
+      fetchTabContent("home", "#home-tab .video-grid", false);
 
-      //Add video skeleton loading state and remove it after 2 seconds to simulate loading video content. Populate the video grid with test data (Use the video skeleton as a template for the home tab video content)
-      const videoGrid = document.querySelector("#home-tab .video-grid");
-      for (let i = 0; i < 25; i++) {
-        const videoSkeleton = document.createElement("div");
-        videoSkeleton.classList.add("video-card");
-        videoSkeleton.innerHTML = `
-            <div class="thumbnail video-skeleton">
-              <!-- <img src="video.thumbnail" alt="video.title" /> -->
-            </div>
+      // --- NEW ASYNC LOADING LOGIC ---
 
-            <div class="video-info">
-              <div class="channel-avatar"></div>
-              <div class="video-text">
-                <h4>video.title</h4>
-                <p>video.channel</p>
-                <p>video.views • video.uploaded</p>
-              </div>
-            </div>
-          `;
-        videoGrid.appendChild(videoSkeleton);
+      async function fetchTabContent(endpoint, containerSelector, isShort) {
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
+
+        // 1. Show original skeletons first
+        renderSkeletons(container, isShort);
+
+        try {
+          // 2. Fetch data from your Express Mock Route
+          const response = await fetch(
+            `http://localhost:3000/api/mock/${endpoint}`,
+          );
+          const data = await response.json();
+
+          // 3. Wait 2 seconds (to simulate your requested loading state)
+          setTimeout(() => {
+            container.innerHTML = ""; // Clear skeletons
+
+            data.forEach((video) => {
+              const div = document.createElement("div");
+
+              if (!isShort) {
+                div.classList.add("video-card");
+                div.innerHTML = `
+                <div class="thumbnail">
+                   <img src="${video.thumbnail}" alt="${video.title}" style="width:100%; border-radius:12px;">
+                </div>
+                <div class="video-info">
+                  <div class="channel-avatar" style="background-image: url('${video.avatar}'); background-size: cover;"></div>
+                  <div class="video-text">
+                    <h4>${video.title}</h4>
+                    <p>${video.channel}</p>
+                    <p>${video.views} • ${video.uploaded || "Just now"}</p>
+                  </div>
+                </div>`;
+              } else {
+                div.classList.add("short");
+                div.innerHTML = `
+              <div class="short-video" style="background-image: url('${video.thumbnail}'); background-size: cover;"></div>
+              <div class="short-ui">
+                <div class="short-info">
+                  <p class="short-title">${video.title}</p>
+                  <p class="short-channel">${video.channel}</p>
+                </div>
+                <div class="short-actions">
+                  <button class="action"></button>
+                  <button class="action"></button>
+                  <button class="action"></button>
+                  <button class="action"></button>
+                </div>
+              </div>`;
+              }
+              container.appendChild(div);
+            });
+          }, 2000);
+        } catch (err) {
+          console.error("Failed to fetch data:", err);
+        }
       }
 
-      // Add shorts skeleton loading state and remove it after 2 seconds to simulate loading shorts content. Populate the shorts with test data (Use the short skeleton as a template for the shorts content)
-      const shortsScroll = document.querySelector(".shorts-scroll");
-      for (let i = 0; i < 5; i++) {
-        const shortSkeleton = document.createElement("div");
-        shortSkeleton.classList.add("short");
-        shortSkeleton.innerHTML = `
+      // Helper to draw the skeletons based on your original template
+      function renderSkeletons(container, isShort) {
+        container.innerHTML = "";
+        const count = isShort ? 5 : 25;
+        for (let i = 0; i < count; i++) {
+          const skeleton = document.createElement("div");
+          skeleton.classList.add(isShort ? "short" : "video-card");
+          skeleton.innerHTML = isShort
+            ? `
          <div class="short-video skeleton"></div>
-
-              <div class="short-ui">
-                <div class="short-info skeleton-text">
-                  <p class="short-title"></p>
-                  <p class="short-channel"></p>
-                </div>
-
-                <div class="short-actions">
-                  <button class="action skeleton-circle"></button>
-                  <button class="action skeleton-circle"></button>
-                  <button class="action skeleton-circle"></button>
-                  <button class="action skeleton-circle"></button>
-                </div>
-              </div>
-
-        `;
-        shortsScroll.appendChild(shortSkeleton);
+         <div class="short-ui">
+           <div class="short-info skeleton-text">
+             <p class="short-title"></p>
+             <p class="short-channel"></p>
+           </div>
+           <div class="short-actions">
+             <button class="action skeleton-circle"></button>
+             <button class="action skeleton-circle"></button>
+             <button class="action skeleton-circle"></button>
+             <button class="action skeleton-circle"></button>
+           </div>
+         </div>`
+            : `
+         <div class="thumbnail video-skeleton"></div>
+         <div class="video-info">
+           <div class="channel-avatar"></div>
+           <div class="video-text">
+             <h4></h4>
+             <p></p>
+             <p></p>
+           </div>
+         </div>`;
+          container.appendChild(skeleton);
+        }
       }
     </script>
   </body>
