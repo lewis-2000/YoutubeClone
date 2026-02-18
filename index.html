@@ -28,7 +28,7 @@
         <div class="logo">Streamer</div>
       </div>
       <div class="nav-group group-2">
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" id="search" />
         <button class="nav-btn nav-search">
           <div class="nav-icon-container">
             <svg
@@ -222,25 +222,206 @@
       </section>
     </div>
 
-        <!-- Create a youtube popup side menu when the nav-btn is clicked -->
+    <!-- Create a youtube popup side menu when the nav-btn is clicked -->
     <div class="side-popup">
       <div class="side-popup-content">
-        <button class="close-btn">&times;</button>
         <nav class="popup-nav">
-          <a href="#">Home</a>
-          <a href="#">Shorts</a>
-          <a href="#">Subscriptions</a>
-          <a href="#">Library</a>
-          <a href="#">History</a>
-          <a href="#">Your Videos</a>
-          <a href="#">Watch Later</a>
-          <a href="#">Liked Videos</a>
+          <div class="top-popup-nav">
+            <button class="close-btn">&times;</button>
+            <!-- <div class="close-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24"
+                viewBox="0 0 30 30"
+                focusable="false"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20 5H4a1 1 0 000 2h16a1 1 0 100-2Zm0 6H4a1 1 0 000 2h16a1 1 0 000-2Zm0 6H4a1 1 0 000 2h16a1 1 0 000-2Z"
+                ></path>
+              </svg>
+            </div> -->
+            <div class="logo">Streamer</div>
+          </div>
+
+          <div class="popup-navigation">
+            <div class="side-menu-btn home">
+              <div class="side-menu-btn-container">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  focusable="false"
+                  aria-hidden="true"
+                  style="
+                    pointer-events: none;
+                    display: inherit;
+                    width: 100%;
+                    height: 100%;
+                  "
+                >
+                  <path
+                    d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm0 2a9 9 0 016.447 15.276 7 7 0 00-12.895 0A9 9 0 0112 3Zm0 2a4 4 0 100 8 4 4 0 000-8Zm0 2a2 2 0 110 4 2 2 0 010-4Zm-.1 9.001L11.899 16a5 5 0 014.904 3.61A8.96 8.96 0 0112 21a8.96 8.96 0 01-4.804-1.391 5 5 0 014.704-3.608Z"
+                  ></path>
+                </svg>
+              </div>
+              <h3>Home</h3>
+            </div>
+            <div class="side-menu-btn shorts">
+              <div class="side-menu-btn-container">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    fill: currentcolor;
+                  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    focusable="false"
+                    aria-hidden="true"
+                    style="
+                      pointer-events: none;
+                      display: inherit;
+                      width: 100%;
+                      height: 100%;
+                    "
+                  >
+                    <path
+                      d="m13.467 1.19-8 4.7a5 5 0 00-.255 8.46 5 5 0 005.32 8.462l8-4.7a5 5 0 00.258-8.462 5 5 0 001.641-6.464l-.12-.217a5 5 0 00-6.844-1.78m5.12 2.79a2.999 2.999 0 01-1.067 4.107l-1.327.78a1 1 0 00.096 1.775l.943.423a3 3 0 01.288 5.323l-8 4.7a3 3 0 01-3.039-5.173l1.327-.78a1 1 0 00-.097-1.775l-.942-.423a3 3 0 01-.288-5.323l8-4.7a3 3 0 014.106 1.066ZM15 12l-5-3v6l5-3Z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <p>Shorts</p>
+            </div>
+          </div>
+
+          <div class="top-popup-subs">
+            <div class="top-popup-header">
+              <h1>Subscriptions</h1>
+              <span>></span>
+            </div>
+            <div class="side-menu-btn subscriptions">
+              <div class="side-menu-btn-container">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  focusable="false"
+                  aria-hidden="true"
+                  style="
+                    pointer-events: none;
+                    display: inherit;
+                    width: 100%;
+                    height: 100%;
+                  "
+                >
+                  <path
+                    d="M18 1H6a2 2 0 00-2 2h16a2 2 0 00-2-2Zm3 4H3a2 2 0 00-2 2v13a2 2 0 002 2h18a2 2 0 002-2V7a2 2 0 00-2-2ZM3 20V7h18v13H3Zm13-6.5L10 10v7l6-3.5Z"
+                  ></path>
+                </svg>
+              </div>
+              <h3>Subscriptions</h3>
+            </div>
+          </div>
+
+          <div class="top-popup-you">
+            <div class="top-popup-header">
+              <h1>You</h1>
+              <span>></span>
+            </div>
+            <div class="side-menu-btn home">
+              <div class="side-menu-btn-container">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  focusable="false"
+                  aria-hidden="true"
+                  style="
+                    pointer-events: none;
+                    display: inherit;
+                    width: 100%;
+                    height: 100%;
+                  "
+                >
+                  <path
+                    d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm0 2a9 9 0 016.447 15.276 7 7 0 00-12.895 0A9 9 0 0112 3Zm0 2a4 4 0 100 8 4 4 0 000-8Zm0 2a2 2 0 110 4 2 2 0 010-4Zm-.1 9.001L11.899 16a5 5 0 014.904 3.61A8.96 8.96 0 0112 21a8.96 8.96 0 01-4.804-1.391 5 5 0 014.704-3.608Z"
+                  ></path>
+                </svg>
+              </div>
+              <h3>Home</h3>
+            </div>
+            <div class="side-menu-btn shorts">
+              <div class="side-menu-btn-container">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    fill: currentcolor;
+                  "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    focusable="false"
+                    aria-hidden="true"
+                    style="
+                      pointer-events: none;
+                      display: inherit;
+                      width: 100%;
+                      height: 100%;
+                    "
+                  >
+                    <path
+                      d="m13.467 1.19-8 4.7a5 5 0 00-.255 8.46 5 5 0 005.32 8.462l8-4.7a5 5 0 00.258-8.462 5 5 0 001.641-6.464l-.12-.217a5 5 0 00-6.844-1.78m5.12 2.79a2.999 2.999 0 01-1.067 4.107l-1.327.78a1 1 0 00.096 1.775l.943.423a3 3 0 01.288 5.323l-8 4.7a3 3 0 01-3.039-5.173l1.327-.78a1 1 0 00-.097-1.775l-.942-.423a3 3 0 01-.288-5.323l8-4.7a3 3 0 014.106 1.066ZM15 12l-5-3v6l5-3Z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <p>Shorts</p>
+            </div>
+
+            <div class="side-menu-btn you">
+              <div class="side-menu-btn-container">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  focusable="false"
+                  aria-hidden="true"
+                  style="
+                    pointer-events: none;
+                    display: inherit;
+                    width: 100%;
+                    height: 100%;
+                  "
+                >
+                  <path
+                    d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm0 2a9 9 0 016.447 15.276 7 7 0 00-12.895 0A9 9 0 0112 3Zm0 2a4 4 0 100 8 4 4 0 000-8Zm0 2a2 2 0 110 4 2 2 0 010-4Zm-.1 9.001L11.899 16a5 5 0 014.904 3.61A8.96 8.96 0 0112 21a8.96 8.96 0 01-4.804-1.391 5 5 0 014.704-3.608Z"
+                  ></path>
+                </svg>
+              </div>
+              <p>You</p>
+            </div>
+          </div>
         </nav>
       </div>
     </div>
-    
+
     <script>
-      // --- YOUR ORIGINAL TAB SWITCHING LOGIC (UNTOUCHED) ---
       const homeTab = document.getElementById("home-tab");
       const shortsTab = document.getElementById("shorts-tab");
       const subscriptionsTab = document.getElementById("subscriptions-tab");
@@ -303,13 +484,13 @@
         renderSkeletons(container, isShort);
 
         try {
-          // 2. Fetch data from your Express Mock Route
+          // 2. Fetch data from the Express Mock Route which contains mock data
           const response = await fetch(
             `http://localhost:3000/api/mock/${endpoint}`,
           );
           const data = await response.json();
 
-          // 3. Wait 2 seconds (to simulate your requested loading state)
+          // 3. Wait 1 seconds
           setTimeout(() => {
             container.innerHTML = ""; // Clear skeletons
 
@@ -349,13 +530,13 @@
               }
               container.appendChild(div);
             });
-          }, 2000);
+          }, 1000);
         } catch (err) {
           console.error("Failed to fetch data:", err);
         }
       }
 
-      // Helper to draw the skeletons based on your original template
+      // Helper to draw the skeletons based on the type of content (shorts vs regular videos)
       function renderSkeletons(container, isShort) {
         container.innerHTML = "";
         const count = isShort ? 5 : 25;
@@ -391,7 +572,7 @@
         }
       }
 
-       // Side-popu script
+      // Side-popup script
       const navMenuBtn = document.querySelector(".nav-menu");
       const sidePopup = document.querySelector(".side-popup");
 

@@ -42,7 +42,6 @@ header {
   transform: scale(1.05);
 }
 
-
 /* Nav popup stlye and open style  */
 
 .side-popup {
@@ -65,24 +64,26 @@ header {
 .side-popup-content {
   /* position: absolute; */
   top: 0;
-  left: -320px; /* sidebar width */
-  width: 320px; /* sidebar width */
+  left: -250px; /* sidebar width */
+  width: 250px; /* sidebar width */
   height: 100%;
   background-color: #fff;
   transition: all 0.3s ease;
 }
 
 .close-btn {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  color: #606060;
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
+  overflow: hidden;
+  background-color: transparent;
   cursor: pointer;
-  font-size: 3rem;
+  font-size: 1.5rem;
 }
 
 .side-popup-content.open {
@@ -92,10 +93,118 @@ header {
 /* popup nav */
 .popup-nav {
   display: flex;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  flex-direction: column;
+  align-items: start;
+  padding: 10px;
+  /* gap: 20px; */
+}
+
+.popup-nav-btn {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  gap: 20px;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+}
+
+.top-popup-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  padding: 10px;
+  /* gap: 20px; */
+}
+
+.top-popup-nav .logo {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: red;
+}
+
+.top-popup-header {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.top-popup-header:hover {
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 37%, #e6e6e6 63%);
+  background-size: 400% 100%;
+}
+
+.top-popup-header h1,
+span {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.popup-navigation,
+.top-popup-subs,
+.top-popup-you {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: start;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Popup nav custom side-menu-btn */
+.popup-navigation .side-menu-btn {
+  width: 100%;
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  border-radius: 10px;
+}
+
+.popup-navigation .side-menu-btn:hover {
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 37%, #e6e6e6 63%);
+  background-size: 400% 100%;
+}
+
+.top-popup-subs .side-menu-btn {
+  width: 100%;
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  border-radius: 10px;
+}
+
+.top-popup-subs .side-menu-btn:hover {
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 37%, #e6e6e6 63%);
+  background-size: 400% 100%;
+}
+
+.top-popup-you .side-menu-btn {
+  width: 100%;
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  border-radius: 10px;
+}
+
+.top-popup-you .side-menu-btn:hover {
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 37%, #e6e6e6 63%);
+  background-size: 400% 100%;
 }
 
 /* Center the icon perfectly */
@@ -292,7 +401,6 @@ header {
 
 /* Video Card */
 .video-card {
-
   cursor: pointer;
 }
 
@@ -434,12 +542,17 @@ header {
   border: none;
 }
 
-
 /* mobile mode */
 @media (max-width: 768px) {
   header {
     height: 56px;
     padding: 0 0.5rem;
+  }
+
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
   }
 
   .group-1 {
@@ -448,12 +561,17 @@ header {
   }
 
   .group-2 {
-    display: none; /* hide search bar on mobile */
+    gap: 0.2rem;
+    justify-content: end;
+  }
+
+  .group-2 input {
+    display: none;
   }
 
   .group-3 {
     width: auto;
-    gap: 0.5rem;
+    gap: 0.2rem;
     margin-right: 0.5rem;
   }
 
