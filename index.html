@@ -245,7 +245,7 @@
           </div>
 
           <div class="popup-navigation">
-            <div class="side-menu-btn home">
+            <div class="side-menu-btn home popup-home">
               <div class="side-menu-btn-container">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -268,7 +268,7 @@
               </div>
               <h3>Home</h3>
             </div>
-            <div class="side-menu-btn shorts">
+            <div class="side-menu-btn shorts popup-shorts">
               <div class="side-menu-btn-container">
                 <div
                   style="
@@ -307,7 +307,7 @@
               <h1>Subscriptions</h1>
               <span>></span>
             </div>
-            <div class="side-menu-btn subscriptions">
+            <div class="side-menu-btn subscriptions popup-subscriptions">
               <div class="side-menu-btn-container">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -337,7 +337,7 @@
               <h1>You</h1>
               <span>></span>
             </div>
-            <div class="side-menu-btn home">
+            <div class="side-menu-btn home popup-home">
               <div class="side-menu-btn-container">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -360,7 +360,7 @@
               </div>
               <h3>Home</h3>
             </div>
-            <div class="side-menu-btn shorts">
+            <div class="side-menu-btn shorts popup-shorts">
               <div class="side-menu-btn-container">
                 <div
                   style="
@@ -393,7 +393,7 @@
               <p>Shorts</p>
             </div>
 
-            <div class="side-menu-btn you">
+            <div class="side-menu-btn you popup-you">
               <div class="side-menu-btn-container">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -588,6 +588,47 @@
         ) {
           sidePopup.classList.remove("open");
         }
+      });
+
+      
+      //Tab switching logic for side-menu-btn in the popup nav
+      const popupHomeBtn = document.querySelector(".popup-home");
+      const popupShortsBtn = document.querySelector(".popup-shorts");
+      const popupSubscriptionsBtn = document.querySelector(
+        ".popup-subscriptions",
+      );
+      const popupYouBtn = document.querySelector(".popup-you");
+
+      popupHomeBtn.addEventListener("click", () => {
+        hideAllTabs();
+        homeTab.style.display = "block";
+        fetchTabContent("home", "#home-tab .video-grid", false);
+        sidePopup.classList.remove("open");
+      });
+
+      popupShortsBtn.addEventListener("click", () => {
+        hideAllTabs();
+        shortsTab.style.display = "block";
+        fetchTabContent("shorts", ".shorts-scroll", true);
+        sidePopup.classList.remove("open");
+      });
+
+      popupSubscriptionsBtn.addEventListener("click", () => {
+        hideAllTabs();
+        subscriptionsTab.style.display = "block";
+        fetchTabContent(
+          "subscriptions",
+          "#subscriptions-tab .video-grid",
+          false,
+        );
+        sidePopup.classList.remove("open");
+      });
+
+      popupYouBtn.addEventListener("click", () => {
+        hideAllTabs();
+        youTab.style.display = "block";
+        fetchTabContent("library", "#you-tab .video-grid", false);
+        sidePopup.classList.remove("open");
       });
     </script>
   </body>
