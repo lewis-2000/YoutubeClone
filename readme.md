@@ -2,6 +2,9 @@
 
 ## Data Structures Usage
 
+## Group members
+- 
+
 The phrase "data structures" is not written explicitly in the code, but these structures are used throughout the project:
 
 - Arrays and objects for frontend video data: `app.js` (`videoData` object with arrays for `Home`, `Shorts`, `Subscriptions`, `Library`, `History`)
